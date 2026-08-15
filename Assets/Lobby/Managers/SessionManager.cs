@@ -10,6 +10,7 @@ public class SessionManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text createCodeText;
     [SerializeField] private TMP_InputField joinCodeInput;
+    [SerializeField] private GameObject loadingPanel;
 
     private async void Start()
     {
@@ -30,6 +31,7 @@ public class SessionManager : MonoBehaviour
 
     public async void CreateSession()
     {
+        loadingPanel.SetActive(true);
         try
         {
             SessionOptions options = new SessionOptions
@@ -47,10 +49,15 @@ public class SessionManager : MonoBehaviour
         {
             Debug.LogException(e);
         }
+        finally
+        {
+            loadingPanel.SetActive(false);
+        }
     }
 
     public async void JoinSession()
     {
+        loadingPanel.SetActive(true);
         try
         {
             string joinCode = joinCodeInput.text;
@@ -62,6 +69,10 @@ public class SessionManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogException(e);
+        }
+        finally
+        {
+            loadingPanel.SetActive(false);
         }
     }
 }
