@@ -5,13 +5,23 @@ using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.Multiplayer;
+using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public class SessionManager : MonoBehaviour
 {
+    public static SessionManager Instance;
+
     [SerializeField] private TMP_Text createCodeText;
     [SerializeField] private TMP_InputField joinCodeInput;
     [SerializeField] private GameObject loadingPanel;
+    public ISession CurrentSession { get; private set; }
 
+    private void Awake()
+    {
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     private async void Start()
     {
         try
@@ -39,11 +49,12 @@ public class SessionManager : MonoBehaviour
                 MaxPlayers = 8
             }.WithRelayNetwork();
 
-            var session = await MultiplayerService.Instance.CreateSessionAsync(options);
+            CurrentSession = await MultiplayerService.Instance.CreateSessionAsync(options);
 
             Debug.Log("세션 생성 성공");
-            Debug.Log("방 코드 : " + session.Code);
-            createCodeText.text = session.Code;
+            Debug.Log("방 코드 : " + CurrentSession.Code);
+
+            NetworkManager.Singleton.SceneManager.LoadScene("WaitingRoom", LoadSceneMode.Single);
         }
         catch (Exception e)
         {
