@@ -2066,7 +2066,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1886528248}
-    PlayerPrefab: {fileID: 3203872959051525379, guid: 2730756f98504428a99219c86057e516, type: 3}
+    PlayerPrefab: {fileID: 3286182323630648451, guid: 2730756f98504428a99219c86057e516, type: 3}
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: 9e451ce850f2a41bdacdb2ebfe0d0b17, type: 2}
@@ -2170,6 +2170,7 @@ MonoBehaviour:
   createCodeText: {fileID: 1636572264}
   joinCodeInput: {fileID: 476427104}
   loadingPanel: {fileID: 1875818943}
+  roomCode: 
 --- !u!4 &1964602099
 Transform:
   m_ObjectHideFlags: 0

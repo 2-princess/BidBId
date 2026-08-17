@@ -17,13 +17,13 @@ public class WaitingRoomManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        playerCount.OnValueChanged += OnPlayerCountChanged;
+        OnPlayerCountChanged(0, playerCount.Value);
+        roomCode.text = "CODE : " + (SessionManager.Instance.roomCode).ToString();
         if (!IsServer) return;
-        roomCode.text = "CODE : " + SessionManager.Instance.CurrentSession.Code;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
-        playerCount.OnValueChanged += OnPlayerCountChanged;
         playerCount.Value = NetworkManager.Singleton.ConnectedClients.Count;
-
     }
 
     public override void OnNetworkDespawn()

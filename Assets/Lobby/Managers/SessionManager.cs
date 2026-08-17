@@ -16,6 +16,7 @@ public class SessionManager : MonoBehaviour
     [SerializeField] private TMP_InputField joinCodeInput;
     [SerializeField] private GameObject loadingPanel;
     public ISession CurrentSession { get; private set; }
+    public string roomCode;
 
     private void Awake()
     {
@@ -48,12 +49,11 @@ public class SessionManager : MonoBehaviour
             {
                 MaxPlayers = 8
             }.WithRelayNetwork();
-
             CurrentSession = await MultiplayerService.Instance.CreateSessionAsync(options);
 
             Debug.Log("세션 생성 성공");
             Debug.Log("방 코드 : " + CurrentSession.Code);
-
+            roomCode = CurrentSession.Code;
             NetworkManager.Singleton.SceneManager.LoadScene("WaitingRoom", LoadSceneMode.Single);
         }
         catch (Exception e)
@@ -72,8 +72,8 @@ public class SessionManager : MonoBehaviour
         try
         {
             string joinCode = joinCodeInput.text;
+            roomCode = joinCode;
             var session = await MultiplayerService.Instance.JoinSessionByCodeAsync(joinCode);
-
             Debug.Log("세션 참가 성공");
             Debug.Log("Session ID : " + session.Id);
         }
@@ -83,7 +83,8 @@ public class SessionManager : MonoBehaviour
         }
         finally
         {
-            loadingPanel.SetActive(false);
+            if (loadingPanel.gameObject != null)
+                loadingPanel.SetActive(false);
         }
     }
 }
