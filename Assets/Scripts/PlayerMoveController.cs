@@ -13,57 +13,105 @@ public class PlayerMoveController : NetworkBehaviour
     {
         Idle,
         Walk,
-        Run
+        Run,
+        Jump,
+        Fall,
+        Randing
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGround = true;
+        }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (!IsOwner) return;
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Vector3 moving = new Vector3(h * speed, playerRigid.linearVelocity.y, v * speed);
         playerRigid.linearVelocity = moving;
-
         if (h != 0 || v != 0)
         {
-            Vector3 dir = new Vector3(h, 0, v);
-            Quaternion targetRot = Quaternion.LookRotation(dir);
-            skull.rotation = targetRot;
-            if (Input.GetKey(KeyCode.LeftShift))
+            Vector3 lookDir = new Vector3(moving.x, 0, moving.z);
+            skull.LookAt(skull.position + lookDir);
+        }
+        if (!isGround)
+        {
+            if (playerRigid.linearVelocity.y > 0)
             {
-                speed = 6f;
-                state = PlayerState.Run;
+                state = PlayerState.Jump;
             }
             else
             {
-                speed = 4f;
-                state = PlayerState.Walk;
+                if (Physics.Raycast(transform.position, Vector3.down, 1f))
+                {
+                    state = PlayerState.Randing;
+                }
+                else
+                {
+                    state = PlayerState.Fall;
+                }
             }
         }
         else
         {
-            state = PlayerState.Idle;
+            if (Input.GetKeyDown(KeyCode.Space) && isGround)
+            {
+                playerRigid.AddForce(Vector3.up * 7f, ForceMode.Impulse);
+                isGround = false;
+            }
+            if (h != 0 || v != 0)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    speed = 6f;
+                    state = PlayerState.Run;
+                }
+                else
+                {
+                    speed = 4f;
+                    state = PlayerState.Walk;
+                }
+            }
+            else
+            {
+                state = PlayerState.Idle;
+            }
         }
         ani(state);
     }
 
     void ani(PlayerState state)
     {
+        ResetAni();
         switch (state)
         {
-            case PlayerState.Idle:
-                animator.SetBool("Walk", false);
-                animator.SetBool("Run", false);
-                break;
             case PlayerState.Walk:
                 animator.SetBool("Walk", true);
-                animator.SetBool("Run", false);
                 break;
             case PlayerState.Run:
-                animator.SetBool("Walk", false);
                 animator.SetBool("Run", true);
                 break;
-
+            case PlayerState.Jump:
+                animator.SetBool("Jump", true);
+                break;
+            case PlayerState.Fall:
+                animator.SetBool("Fall", true);
+                break;
+            case PlayerState.Randing:
+                animator.SetBool("Randing", true);
+                break;
         }
+    }
+    void ResetAni()
+    {
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
+        animator.SetBool("Jump", false);
+        animator.SetBool("Fall", false);
+        animator.SetBool("Randing", false);
     }
 }
