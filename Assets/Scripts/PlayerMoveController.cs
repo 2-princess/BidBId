@@ -18,11 +18,16 @@ public class PlayerMoveController : NetworkBehaviour
         Fall,
         Randing
     }
+
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        foreach (ContactPoint contact in collision.contacts)
         {
-            isGround = true;
+            if (contact.normal.y > 0.1f)
+            {
+                isGround = true;
+                break;
+            }
         }
     }
 
@@ -31,8 +36,22 @@ public class PlayerMoveController : NetworkBehaviour
         if (!IsOwner) return;
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        Vector3 moving = new Vector3(h * speed, playerRigid.linearVelocity.y, v * speed);
+        Transform cam = Camera.main.transform;
+
+        Vector3 forward = cam.forward;
+        Vector3 right = cam.right;
+
+        forward.y = 0;
+        right.y = 0;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDir = forward * v + right * h;
+        Vector3 moving = new Vector3(moveDir.x * speed, playerRigid.linearVelocity.y, moveDir.z * speed);
+
         playerRigid.linearVelocity = moving;
+
         if (h != 0 || v != 0)
         {
             Vector3 lookDir = new Vector3(moving.x, 0, moving.z);
