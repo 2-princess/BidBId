@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8841247820423761452}
   - component: {fileID: 3871211761153611127}
   - component: {fileID: 552657221123348014}
+  - component: {fileID: 2589459441034865631}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -135,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 438390590
+  GlobalObjectIdHash: 1136763353
   InScenePlacedSourceGlobalObjectIdHash: 1136763353
   DeferredDespawnTick: 0
   Ownership: 1
@@ -236,6 +237,46 @@ CapsuleCollider:
   m_Height: 3.2506092
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &2589459441034865631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286182323630648451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.Components.NetworkAnimator
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkAnimatorExpanded: 0
+  AuthorityMode: 1
+  m_Animator: {fileID: 2409793333134999481}
+  TransitionStateInfoList: []
+  AnimatorParameterEntries:
+    ParameterEntries:
+    - name: Walk
+      NameHash: 765711723
+      Synchronize: 1
+      ParameterType: 4
+    - name: Run
+      NameHash: 1748754976
+      Synchronize: 1
+      ParameterType: 4
+    - name: Jump
+      NameHash: 125937960
+      Synchronize: 1
+      ParameterType: 4
+    - name: Fall
+      NameHash: 1533177906
+      Synchronize: 1
+      ParameterType: 4
+    - name: Randing
+      NameHash: 392564762
+      Synchronize: 1
+      ParameterType: 4
+  AnimatorParametersExpanded: 0
 --- !u!1 &3916169126514564796
 GameObject:
   m_ObjectHideFlags: 0
