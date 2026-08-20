@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaitingRoomManager : NetworkBehaviour
 {
@@ -44,6 +45,11 @@ public class WaitingRoomManager : NetworkBehaviour
     private void OnPlayerCountChanged(int oldValue, int newValue)
     {
         playerCountText.text = newValue + " / 8";
+    }
+    public void StartGame()
+    {
+        if (!IsServer) return;
+        NetworkManager.Singleton.SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
 
 }
