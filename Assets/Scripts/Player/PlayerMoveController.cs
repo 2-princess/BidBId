@@ -1,23 +1,16 @@
 using Unity.Netcode;
 using UnityEngine;
+using static PlayerAnimationController;
 
 public class PlayerMoveController : NetworkBehaviour
 {
     public Rigidbody playerRigid;
-    public Animator animator;
+
     public Transform skull;
     public bool isGround = false;
+    public bool isMove = true;
+    public PlayerAnimationController aniCon;
     float speed = 4f;
-    public PlayerState state;
-    public enum PlayerState
-    {
-        Idle,
-        Walk,
-        Run,
-        Jump,
-        Fall,
-        Randing
-    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -34,6 +27,7 @@ public class PlayerMoveController : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return;
+        if(!isMove) return;
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Transform cam = Camera.main.transform;
@@ -57,25 +51,25 @@ public class PlayerMoveController : NetworkBehaviour
             Vector3 lookDir = new Vector3(moving.x, 0, moving.z);
             skull.LookAt(skull.position + lookDir);
         }
-        if (!isGround)
+        if (!isGround) // 점프
         {
             if (playerRigid.linearVelocity.y > 0)
             {
-                state = PlayerState.Jump;
+                aniCon.SetAni(PlayerState.Jump);
             }
             else
             {
                 if (Physics.Raycast(transform.position, Vector3.down, 1f))
                 {
-                    state = PlayerState.Randing;
+                    aniCon.SetAni(PlayerState.Randing);
                 }
                 else
                 {
-                    state = PlayerState.Fall;
+                    aniCon.SetAni(PlayerState.Fall);
                 }
             }
         }
-        else
+        else // 걷기,달리기
         {
             if (Input.GetKeyDown(KeyCode.Space) && isGround)
             {
@@ -87,50 +81,18 @@ public class PlayerMoveController : NetworkBehaviour
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     speed = 6f;
-                    state = PlayerState.Run;
+                    aniCon.SetAni(PlayerState.Run);
                 }
                 else
                 {
                     speed = 4f;
-                    state = PlayerState.Walk;
+                    aniCon.SetAni(PlayerState.Walk);
                 }
             }
             else
             {
-                state = PlayerState.Idle;
+                aniCon.SetAni(PlayerState.Idle);
             }
         }
-        ani(state);
-    }
-
-    void ani(PlayerState state)
-    {
-        ResetAni();
-        switch (state)
-        {
-            case PlayerState.Walk:
-                animator.SetBool("Walk", true);
-                break;
-            case PlayerState.Run:
-                animator.SetBool("Run", true);
-                break;
-            case PlayerState.Jump:
-                animator.SetBool("Jump", true);
-                break;
-            case PlayerState.Fall:
-                animator.SetBool("Fall", true);
-                break;
-            case PlayerState.Randing:
-                animator.SetBool("Randing", true);
-                break;
-        }
-    }
-    void ResetAni()
-    {
-        animator.SetBool("Walk", false);
-        animator.SetBool("Run", false);
-        animator.SetBool("Jump", false);
-        animator.SetBool("Fall", false);
-        animator.SetBool("Randing", false);
     }
 }

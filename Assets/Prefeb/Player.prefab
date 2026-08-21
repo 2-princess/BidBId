@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 2428519092035632574}
   - component: {fileID: 2764043272432466403}
   - component: {fileID: 8708775629282035474}
+  - component: {fileID: 552657221123348014}
   - component: {fileID: 7785675532195758310}
   - component: {fileID: 8841247820423761452}
   - component: {fileID: 3871211761153611127}
-  - component: {fileID: 552657221123348014}
+  - component: {fileID: 4349832812463647489}
   - component: {fileID: 2589459441034865631}
   - component: {fileID: 1409435587623248783}
   m_Layer: 0
@@ -125,6 +126,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &552657221123348014
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286182323630648451}
+  m_Material: {fileID: 13400000, guid: 045a12f24120b4af08ca3a28929c4bec, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.82578963
+  m_Height: 2.9427388
+  m_Direction: 1
+  m_Center: {x: -0.023210544, y: 1.4162661, z: 0}
 --- !u!114 &7785675532195758310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,33 +235,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   ShowTopMostFoldoutHeaderGroup: 1
   playerRigid: {fileID: 8708775629282035474}
-  animator: {fileID: 2409793333134999481}
   skull: {fileID: 6233770688815137121}
   isGround: 0
-  state: 0
---- !u!136 &552657221123348014
-CapsuleCollider:
+  aniCon: {fileID: 4349832812463647489}
+--- !u!114 &4349832812463647489
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3286182323630648451}
-  m_Material: {fileID: 13400000, guid: 045a12f24120b4af08ca3a28929c4bec, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.82578963
-  m_Height: 2.9427388
-  m_Direction: 1
-  m_Center: {x: -0.023210544, y: 1.4162661, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5711f6f903639469eae46867dcea8513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
+  state: 0
+  animator: {fileID: 2409793333134999481}
 --- !u!114 &2589459441034865631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +291,10 @@ MonoBehaviour:
       NameHash: 392564762
       Synchronize: 1
       ParameterType: 4
+    - name: Mining
+      NameHash: 577859424
+      Synchronize: 1
+      ParameterType: 4
   AnimatorParametersExpanded: 0
 --- !u!114 &1409435587623248783
 MonoBehaviour:
@@ -291,6 +309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   ShowTopMostFoldoutHeaderGroup: 1
+  aniCon: {fileID: 4349832812463647489}
+  playerMoveCon: {fileID: 3871211761153611127}
 --- !u!1 &3916169126514564796
 GameObject:
   m_ObjectHideFlags: 0

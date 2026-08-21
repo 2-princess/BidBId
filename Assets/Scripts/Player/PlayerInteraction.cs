@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerInteraction : NetworkBehaviour
 {
+    public PlayerAnimationController aniCon;
+    public PlayerMoveController playerMoveCon;
+
     void Update()
     {
         if (!IsOwner) return;
@@ -14,8 +17,10 @@ public class PlayerInteraction : NetworkBehaviour
             {
                 if (col.CompareTag("Ore"))
                 {
+                    playerMoveCon.isMove = false;
                     NetworkObject ore = col.GetComponent<NetworkObject>();
                     GetOreRpc(ore);
+                    aniCon.SetAni(PlayerAnimationController.PlayerState.Mining);
                 }
             }
         }
