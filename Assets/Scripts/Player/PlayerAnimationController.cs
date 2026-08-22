@@ -49,6 +49,10 @@ public class PlayerAnimationController : MonoBehaviour
                 break;
         }
     }
+    public void SetMiningSpeed(float speed)
+    {
+        animator.SetFloat("MiningSpeed", speed);
+    }
     void ResetAni()
     {
         animator.SetBool("Walk", false);
