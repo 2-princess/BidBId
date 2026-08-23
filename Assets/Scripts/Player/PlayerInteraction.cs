@@ -34,8 +34,8 @@ public class PlayerInteraction : NetworkBehaviour
         if (checkTimer >= 2f)
         {
             Debug.Log("2초 동안 누른 횟수 : " + pressCount);
-            if (pressCount > 9) MiningSpeed(7f);
-            else if (pressCount > 7) MiningSpeed(5f);
+            if (pressCount > 14) MiningSpeed(7f);
+            else if (pressCount > 8) MiningSpeed(5f);
             else MiningSpeed(1.5f);
 
             pressCount = 0;

@@ -1,22 +1,26 @@
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UniversityOfGames.ProgressBarToolkit;
 
 public class OreNode : NetworkBehaviour
 {
 
-    public NetworkVariable<int> hp = new NetworkVariable<int>(40);
+    public NetworkVariable<float> hp = new NetworkVariable<float>(40);
+    public SegmentedProgressBar progressBar;
     public TMP_Text text;
 
     public override void OnNetworkSpawn()
     {
         hp.OnValueChanged += HpChanged;
+        progressBar.FillAmount = 1;
         text.text = "HP : " + hp.Value;
     }
 
-    private void HpChanged(int oldValue, int newValue)
+    private void HpChanged(float oldValue, float newValue)
     {
         Debug.Log("광석 HP 변경 : " + oldValue + " → " + newValue);
+        progressBar.FillAmount = newValue / 40;
         text.text = "HP : " + newValue;
     }
     public override void OnNetworkDespawn()
