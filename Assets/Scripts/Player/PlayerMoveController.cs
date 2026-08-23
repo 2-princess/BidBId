@@ -48,8 +48,8 @@ public class PlayerMoveController : NetworkBehaviour
 
         if (h != 0 || v != 0)
         {
-            Vector3 lookDir = new Vector3(moving.x, 0, moving.z);
-            skull.LookAt(skull.position + lookDir);
+            // Vector3 lookDir = new Vector3(moving.x, 0, moving.z);
+            skull.LookAt(skull.position + moving);
         }
         if (!isGround) // 점프
         {
