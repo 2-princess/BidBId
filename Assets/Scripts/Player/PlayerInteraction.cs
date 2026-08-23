@@ -22,10 +22,10 @@ public class PlayerInteraction : NetworkBehaviour
                 if (col.CompareTag("Ore"))
                 {
                     pressCount++;
+                    Debug.Log("E키 누름");
                     isMining = true;
                     playerMoveCon.isMove = false;
-                    NetworkObject ore = col.GetComponent<NetworkObject>();
-                    GetOreRpc(ore);
+                    GetOreRpc();
                     aniCon.SetAni(PlayerAnimationController.PlayerState.Mining);
                     break;
                 }
@@ -49,12 +49,18 @@ public class PlayerInteraction : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    void GetOreRpc(NetworkObjectReference col)
+    void GetOreRpc()
     {
-        if (col.TryGet(out NetworkObject netObj))
+        Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
+        foreach (Collider col in cols)
         {
-            OreNode ore = netObj.GetComponent<OreNode>();
-            ore.hpMinus();
+            if (col.CompareTag("Ore"))
+            {
+                OreNode ore = col.GetComponent<OreNode>();
+                PlayerInventory inventory = GetComponent<PlayerInventory>();
+                ore.HpMinus(inventory);
+                break;
+            }
         }
     }
 }

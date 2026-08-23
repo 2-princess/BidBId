@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 4349832812463647489}
   - component: {fileID: 2589459441034865631}
   - component: {fileID: 1409435587623248783}
+  - component: {fileID: 5985621916694216345}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -237,6 +238,7 @@ MonoBehaviour:
   playerRigid: {fileID: 8708775629282035474}
   skull: {fileID: 6233770688815137121}
   isGround: 0
+  isMove: 1
   aniCon: {fileID: 4349832812463647489}
 --- !u!114 &4349832812463647489
 MonoBehaviour:
@@ -295,6 +297,10 @@ MonoBehaviour:
       NameHash: 577859424
       Synchronize: 1
       ParameterType: 4
+    - name: MiningSpeed
+      NameHash: -971962963
+      Synchronize: 1
+      ParameterType: 1
   AnimatorParametersExpanded: 0
 --- !u!114 &1409435587623248783
 MonoBehaviour:
@@ -311,6 +317,23 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   aniCon: {fileID: 4349832812463647489}
   playerMoveCon: {fileID: 3871211761153611127}
+--- !u!114 &5985621916694216345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286182323630648451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec3bc438155b4eb0a7a9720a7f0389a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  ShowTopMostFoldoutHeaderGroup: 1
+  inventory:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
 --- !u!1 &3916169126514564796
 GameObject:
   m_ObjectHideFlags: 0
