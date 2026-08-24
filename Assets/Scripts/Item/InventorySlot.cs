@@ -6,7 +6,7 @@ public struct InventorySlot : INetworkSerializable, IEquatable<InventorySlot>
     public int itemId;
     public int count;
 
-    public InventorySlot(int itemId, int count)
+    public InventorySlot(int itemId,int count)
     {
         this.itemId = itemId;
         this.count = count;
