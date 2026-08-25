@@ -12,8 +12,16 @@ public class PlayerInteraction : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return;
-        if (isMining) checkTimer += Time.deltaTime;
-
+        if (isMining)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameManager.Instance.EscPanelToggle(false);
+                playerMoveCon.isMove = true;
+                isMining = false;
+            }
+            checkTimer += Time.deltaTime;
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
@@ -24,7 +32,8 @@ public class PlayerInteraction : NetworkBehaviour
                     pressCount++;
                     Debug.Log("E키 누름");
                     isMining = true;
-                    // playerMoveCon.isMove = false;
+                    playerMoveCon.isMove = false;
+                    GameManager.Instance.EscPanelToggle(true);
                     GetOreRpc();
                     aniCon.SetAni(PlayerAnimationController.PlayerState.Mining);
                     break;

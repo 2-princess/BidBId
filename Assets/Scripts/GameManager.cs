@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryPanel;
     public InventoryUI inventoryUI;
     public GameObject storePanel;
+    public GameObject escPanel;
     public StoreUI storeUI;
 
     void Awake()
@@ -30,6 +31,11 @@ public class GameManager : MonoBehaviour
         {
             storeUI.OpenStore();
         }
+    }
+
+    public void EscPanelToggle(bool state)
+    {
+        escPanel.SetActive(state);
     }
 
 }
