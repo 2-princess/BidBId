@@ -62,6 +62,8 @@ public class PlayerInventory : NetworkBehaviour
                     price = 10000;
                     break;
             }
+            PlayerStatus status = GetComponent<PlayerStatus>();
+            status.AddGold(price * amount);
             return;
         }
         Debug.Log("판매하려는 아이템을 인벤토리에서 못 찾음");
