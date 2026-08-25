@@ -24,10 +24,14 @@ public class PlayerInteraction : NetworkBehaviour
                     pressCount++;
                     Debug.Log("E키 누름");
                     isMining = true;
-                    playerMoveCon.isMove = false;
+                    // playerMoveCon.isMove = false;
                     GetOreRpc();
                     aniCon.SetAni(PlayerAnimationController.PlayerState.Mining);
                     break;
+                }
+                if (col.CompareTag("Store"))
+                {
+                    GameManager.Instance.StoreToggle();
                 }
             }
         }
