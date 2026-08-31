@@ -29,11 +29,11 @@ public class PlayerInteraction : NetworkBehaviour
             {
                 if (col.CompareTag("Ore"))
                 {
+                    GameManager.Instance.EscPanelToggle(true);
                     pressCount++;
                     Debug.Log("E키 누름");
                     isMining = true;
                     playerMoveCon.isMove = false;
-                    GameManager.Instance.EscPanelToggle(true);
                     GetOreRpc();
                     aniCon.SetAni(PlayerAnimationController.PlayerState.Mining);
                     break;
