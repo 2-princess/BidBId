@@ -27,7 +27,7 @@ public class PlayerMoveController : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return;
-        if(!isMove) return;
+        if (!isMove) return;
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Transform cam = Camera.main.transform;
@@ -42,13 +42,14 @@ public class PlayerMoveController : NetworkBehaviour
         right.Normalize();
 
         Vector3 moveDir = forward * v + right * h;
-        Vector3 moving = new Vector3(moveDir.x * speed, playerRigid.linearVelocity.y, moveDir.z * speed);
+        float y = playerRigid.linearVelocity.y;
 
+        if (isGround && y > 0) { y = 0; }
+        Vector3 moving = new Vector3(moveDir.x * speed, y, moveDir.z * speed);
         playerRigid.linearVelocity = moving;
 
         if (h != 0 || v != 0)
         {
-            // Vector3 lookDir = new Vector3(moving.x, 0, moving.z);
             skull.LookAt(skull.position + moving);
         }
         if (!isGround) // 점프
