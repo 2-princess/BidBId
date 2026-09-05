@@ -18,4 +18,5 @@ MonoBehaviour:
   grade: 1
   skillDescription: "\uB77C\uC6B4\uB4DC\uB2F9 \uD55C\uBC88 \uC9C0\uC815\uD50C\uB808\uC774\uC5B4
     \uB0B4\uC704\uCE58\uB85C \uC18C\uD658"
+  needTarget: 1
   icon: {fileID: 0}

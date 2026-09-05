@@ -13,9 +13,11 @@ public class SessionManager : MonoBehaviour
     public static SessionManager Instance;
 
     [SerializeField] private TMP_Text createCodeText;
+    [SerializeField] private TMP_InputField nicknameInput;
     [SerializeField] private TMP_InputField joinCodeInput;
     [SerializeField] private GameObject loadingPanel;
     public ISession CurrentSession { get; private set; }
+    public string MyNickname { get; private set; }
     public string roomCode;
 
     private void Awake()
@@ -68,6 +70,14 @@ public class SessionManager : MonoBehaviour
 
     public async void JoinSession()
     {
+        string nickname = nicknameInput.text.Trim();
+        if (nickname == "")
+        {
+            Debug.Log("닉네임을 입력하세요.");
+            return;
+        }
+        MyNickname = nickname;
+
         loadingPanel.SetActive(true);
         try
         {
@@ -76,6 +86,7 @@ public class SessionManager : MonoBehaviour
             var session = await MultiplayerService.Instance.JoinSessionByCodeAsync(joinCode);
             Debug.Log("세션 참가 성공");
             Debug.Log("Session ID : " + session.Id);
+            Debug.Log(MyNickname);
         }
         catch (Exception e)
         {

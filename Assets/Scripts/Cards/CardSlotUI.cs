@@ -22,7 +22,14 @@ public class CardSlotUI : MonoBehaviour
 
     public void UseCard()
     {
-        Debug.Log("사용할 카드 : " + data.cardName);
-        Debug.Log("카드 ID : " + data.id);
+
+        if (data.needTarget)
+        {
+            Debug.Log("타겟 선택 필요");
+        }
+        else
+        {
+            Debug.Log("바로 사용 : " + data.id);
+        }
     }
 }

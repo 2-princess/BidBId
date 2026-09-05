@@ -17,4 +17,5 @@ MonoBehaviour:
   skillType: 0
   grade: 1
   skillDescription: "\uC9C0\uC815 \uC0C1\uB300\uBC29 \uB3C8 -15%"
+  needTarget: 1
   icon: {fileID: 0}
