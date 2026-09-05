@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b8d565a13d34069a1a5cee884cf81f, type: 3}
+  m_Name: Slave
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  id: 6
+  cardName: "\uB178\uC608\uC18C\uD658"
+  skillType: 3
+  grade: 1
+  skillDescription: "\uB77C\uC6B4\uB4DC\uB2F9 \uD55C\uBC88 \uC9C0\uC815\uD50C\uB808\uC774\uC5B4
+    \uB0B4\uC704\uCE58\uB85C \uC18C\uD658"
+  icon: {fileID: 0}

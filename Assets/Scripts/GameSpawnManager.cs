@@ -8,15 +8,32 @@ public class GameSpawnManager : NetworkBehaviour
 
     IEnumerator Start()
     {
-        // 내 PlayerObject가 준비될 때까지 기다림   
         yield return new WaitUntil(() => NetworkManager.Singleton.LocalClient.PlayerObject != null);
 
-        NetworkObject player = NetworkManager.Singleton.LocalClient.PlayerObject;
+        RequestSpawnRpc();
+    }
 
-        ulong clientId = NetworkManager.Singleton.LocalClientId;
+    [Rpc(SendTo.Server)]
+    void RequestSpawnRpc(RpcParams rpcParams = default)
+    {
+        ulong clientId = rpcParams.Receive.SenderClientId;
+
+        if (!NetworkManager.Singleton.ConnectedClients.TryGetValue(
+            clientId,
+            out NetworkClient client))
+            return;
+
+        NetworkObject player = client.PlayerObject;
 
         int spawnIndex = (int)(clientId % (ulong)spawnPoints.Length);
 
-        player.transform.position = spawnPoints[spawnIndex].position;
+        Vector3 spawnPosition =
+            spawnPoints[spawnIndex].position + Vector3.up;
+
+        PlayerMoveController move = player.GetComponent<PlayerMoveController>();
+
+        move.SpawnTeleportRpc(spawnPosition);
+
+        Debug.Log($"플레이어 {clientId} 스폰 위치 : {spawnPosition}");
     }
 }

@@ -54,7 +54,7 @@ public class SessionManager : MonoBehaviour
             Debug.Log("세션 생성 성공");
             Debug.Log("방 코드 : " + CurrentSession.Code);
             roomCode = CurrentSession.Code;
-            NetworkManager.Singleton.SceneManager.LoadScene("WaitingRoom", LoadSceneMode.Single);
+            NetworkManager.Singleton.SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
         catch (Exception e)
         {

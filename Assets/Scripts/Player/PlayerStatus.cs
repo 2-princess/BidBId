@@ -4,6 +4,12 @@ using UnityEngine;
 public class PlayerStatus : NetworkBehaviour
 {
     public NetworkVariable<int> gold = new NetworkVariable<int>();
+    public NetworkList<int> cards = new NetworkList<int>();
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C)) AddCard(2);
+    }
 
     public void AddGold(int amount)
     {
@@ -20,5 +26,12 @@ public class PlayerStatus : NetworkBehaviour
 
         gold.Value -= amount;
         return true;
+    }
+
+    public void AddCard(int cardId)
+    {
+        if (!IsServer) return;
+        cards.Add(cardId);
+        Debug.Log("카드 획득 : " + cardId);
     }
 }

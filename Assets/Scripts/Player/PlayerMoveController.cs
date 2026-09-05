@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using static PlayerAnimationController;
@@ -10,7 +11,7 @@ public class PlayerMoveController : NetworkBehaviour
     public bool isGround = false;
     public bool isMove = true;
     public PlayerAnimationController aniCon;
-    float speed = 4f;
+    float speed = 3f;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -19,6 +20,7 @@ public class PlayerMoveController : NetworkBehaviour
             if (contact.normal.y > 0.1f)
             {
                 isGround = true;
+                StartCoroutine(LandingDelay());
                 break;
             }
         }
@@ -48,9 +50,9 @@ public class PlayerMoveController : NetworkBehaviour
         Vector3 moving = new Vector3(moveDir.x * speed, y, moveDir.z * speed);
         playerRigid.linearVelocity = moving;
 
-        if (h != 0 || v != 0)
+        if (moveDir != Vector3.zero)
         {
-            skull.LookAt(skull.position + moving);
+            skull.LookAt(skull.position + moveDir);
         }
         if (!isGround) // 점프
         {
@@ -81,12 +83,12 @@ public class PlayerMoveController : NetworkBehaviour
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    speed = 6f;
+                    speed = 5f;
                     aniCon.SetAni(PlayerState.Run);
                 }
                 else
                 {
-                    speed = 4f;
+                    speed = 3f;
                     aniCon.SetAni(PlayerState.Walk);
                 }
             }
@@ -95,5 +97,26 @@ public class PlayerMoveController : NetworkBehaviour
                 aniCon.SetAni(PlayerState.Idle);
             }
         }
+    }
+    IEnumerator LandingDelay()
+    {
+        isMove = false;
+        // 착지 순간 좌우 이동도 잠깐 멈춤
+        playerRigid.linearVelocity = new Vector3(0, playerRigid.linearVelocity.y, 0);
+        yield return new WaitForSeconds(0.35f);
+
+        isMove = true;
+    }
+
+    [Rpc(SendTo.Owner)]
+    public void SpawnTeleportRpc(Vector3 spawnPosition)
+    {
+        Debug.Log("RPC 받은 위치 : " + spawnPosition);
+
+        playerRigid.linearVelocity = Vector3.zero;
+
+        playerRigid.position = spawnPosition;
+
+        Debug.Log("이동 직후 위치 : " + transform.position);
     }
 }

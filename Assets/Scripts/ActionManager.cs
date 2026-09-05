@@ -29,11 +29,11 @@ public class ActionManager : NetworkBehaviour
     void Update()
     {
         if (!IsServer) return;
-
         if (Input.GetKeyDown(KeyCode.P))
         {
             SelectRandomCard();
         }
+
     }
 
     public void SelectRandomCard()
@@ -42,6 +42,7 @@ public class ActionManager : NetworkBehaviour
 
         selectedCard = CardDatabase.Instance.GetRandomCard();
         currentGrade.Value = selectedCard.grade;
+        currentPrice.Value = 10000;
         Debug.Log("경매 카드 : " + selectedCard.cardName);
         SelectInformationPlayer();
         auctionState.Value = AuctionState.Information;
