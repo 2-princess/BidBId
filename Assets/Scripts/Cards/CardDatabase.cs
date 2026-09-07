@@ -20,7 +20,6 @@ public class CardDatabase : MonoBehaviour
                 return cards[i];
             }
         }
-
         return null;
     }
 

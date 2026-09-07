@@ -8,7 +8,7 @@ public class PlayerStatus : NetworkBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)) AddCard(2);
+        if (Input.GetKeyDown(KeyCode.C)) AddCard(1);
     }
 
     public void AddGold(int amount)

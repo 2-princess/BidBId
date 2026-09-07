@@ -758,6 +758,7 @@ GameObject:
   - component: {fileID: 1409435587623248783}
   - component: {fileID: 5985621916694216345}
   - component: {fileID: 3593239432856812311}
+  - component: {fileID: 8167232576981578495}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1090,6 +1091,23 @@ MonoBehaviour:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
+  cards:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+--- !u!114 &8167232576981578495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286182323630648451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc49e90fe803e4e82bc3dd92d4397596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillController
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &3632309164386310496
 GameObject:
   m_ObjectHideFlags: 0

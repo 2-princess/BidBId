@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0b8d565a13d34069a1a5cee884cf81f, type: 3}
-  m_Name: PickPocket3
+  m_Name: PickPocket1
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  id: 3
+  skill: {fileID: 11400000, guid: d5ce607ebb04c48a083f7240ff72459f, type: 2}
+  id: 1
   cardName: "\uC18C\uB9E4\uCE58\uAE30"
   skillType: 0
-  grade: 2
-  skillDescription: "\uC9C0\uC815 \uC0C1\uB300\uBC29 \uB3C8 -25%"
+  grade: 0
+  skillDescription: "\uC9C0\uC815 \uC0C1\uB300\uBC29 \uB3C8 -10%"
   needTarget: 1
   icon: {fileID: 0}
