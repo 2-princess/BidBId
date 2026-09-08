@@ -1611,8 +1611,8 @@ RectTransform:
   - {fileID: 476427105}
   - {fileID: 871263447}
   - {fileID: 207147541}
-  - {fileID: 1875818944}
   - {fileID: 1286866603}
+  - {fileID: 1875818944}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1950,7 +1950,7 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: 96db3f50f68034ad9a944c4c846ab334, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_KeepTextSelectionVisible: 0
