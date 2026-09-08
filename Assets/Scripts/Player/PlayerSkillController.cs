@@ -27,7 +27,7 @@ public class PlayerSkillController : NetworkBehaviour
         if (card.needTarget)
         {
             // 타겟 선택 UI 열기
-            TargetSelectUI.Instance.Open(cardId);
+            GameManager.Instance.PlayersPanelOpen(cardId);
         }
         else
         {

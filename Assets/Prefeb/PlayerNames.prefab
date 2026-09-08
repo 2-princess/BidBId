@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 158200141338501019}
   - component: {fileID: 676641970262358110}
   - component: {fileID: 7487902161790455094}
+  - component: {fileID: 416298331149222331}
   m_Layer: 5
   m_Name: PlayerNames
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &416298331149222331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968227815195941830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f49aef9839f47579937b09579cc1bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetPlayerName
+  nameText: {fileID: 5277048368155638833}
 --- !u!1 &7224267007568432399
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,8 +202,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PlayerName
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 96db3f50f68034ad9a944c4c846ab334, type: 2}
+  m_sharedMaterial: {fileID: -3987072346464376654, guid: 96db3f50f68034ad9a944c4c846ab334, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

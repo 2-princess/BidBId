@@ -5,27 +5,19 @@ using UnityEngine.UI;
 
 public class TargetSelectUI : NetworkBehaviour
 {
-    public static TargetSelectUI Instance;
-    public GameObject tagetPanel;
     public Transform trans;
     public GameObject namePrefeb;
     public int selectedCardId;
-
-    void Awake()
-    {
-        Instance = this;
-    }
 
     public void Open(int cardId)
     {
         selectedCardId = cardId;
         SelectPlayers();
-        tagetPanel.SetActive(true);
     }
 
     public void Close()
     {
-        tagetPanel.SetActive(false);
+        GameManager.Instance.targetSelectUI.gameObject.SetActive(false);
     }
 
     public void SelectPlayers()
@@ -44,8 +36,12 @@ public class TargetSelectUI : NetworkBehaviour
 
             GameObject buttonObj = Instantiate(namePrefeb, trans);
 
-            TMP_Text nameText = buttonObj.GetComponentInChildren<TMP_Text>();
-            nameText.text = status.nickname.Value.ToString();
+            TargetPlayerName targetPlayerName = buttonObj.GetComponent<TargetPlayerName>();
+
+            if (targetPlayerName != null)
+            {
+                targetPlayerName.nameText.text = status.nickname.Value.ToString();
+            }
 
             Button button = buttonObj.GetComponent<Button>();
 

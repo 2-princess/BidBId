@@ -11,7 +11,6 @@ public class CardInventoryUI : MonoBehaviour
 
     public void OpenInventory()
     {
-        cardInventoryPanel.gameObject.SetActive(!cardInventoryPanel.gameObject.activeInHierarchy);
         playerStatus = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerStatus>();
         RefreshInventory();
     }

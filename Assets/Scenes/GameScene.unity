@@ -920,8 +920,9 @@ GameObject:
   - component: {fileID: 109092945}
   - component: {fileID: 109092944}
   - component: {fileID: 109092943}
+  - component: {fileID: 109092946}
   m_Layer: 5
-  m_Name: CardScroll View
+  m_Name: CardInventoryUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1016,6 +1017,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109092941}
   m_CullTransparentMesh: 1
+--- !u!114 &109092946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109092941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8067d4412ad4643c387a9836c8ca26bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardInventoryUI
+  cardInventoryPanel: {fileID: 109092941}
+  cardSlotPrefab: {fileID: 1366570415719185492, guid: 19bc33146deca41b19d1a7b00cd54cd6, type: 3}
+  content: {fileID: 1211049951}
 --- !u!1 &122711265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,8 +1813,6 @@ GameObject:
   - component: {fileID: 326338071}
   - component: {fileID: 326338070}
   - component: {fileID: 326338072}
-  - component: {fileID: 326338073}
-  - component: {fileID: 326338074}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1818,8 +1832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74233ef68156d4351ae286b1d2bddc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  inventoryPanel: {fileID: 440099043}
+  cardInventoryUI: {fileID: 109092946}
   inventoryUI: {fileID: 440099047}
+  targetSelectUI: {fileID: 504181053}
   storePanel: {fileID: 88429533}
   escPanel: {fileID: 1932083152}
   storeUI: {fileID: 88429538}
@@ -1858,49 +1873,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb1b393e9e7174cf1858214367c20995, type: 2}
   - {fileID: 11400000, guid: 242fbf1d24b744e6bb806f352fb744dc, type: 2}
   - {fileID: 11400000, guid: ae9e22c2a75d54765a1739fe51fdf420, type: 2}
---- !u!114 &326338073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326338069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 647910323
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  DeferredDespawnTick: 0
-  Ownership: 1
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  m_InScenePlaced: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 0
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
---- !u!114 &326338074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326338069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6649fca9412834c028f34e12bd2740fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetSelectUI
-  ShowTopMostFoldoutHeaderGroup: 1
-  tagetPanel: {fileID: 504181048}
-  trans: {fileID: 1207614724}
-  namePrefeb: {fileID: 2968227815195941830, guid: 3c87d6df22c5c4123b5f88ee12c01f95, type: 3}
-  selectedCardId: 0
 --- !u!1 &326720238
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,6 +2518,8 @@ GameObject:
   - component: {fileID: 504181052}
   - component: {fileID: 504181051}
   - component: {fileID: 504181050}
+  - component: {fileID: 504181054}
+  - component: {fileID: 504181053}
   m_Layer: 5
   m_Name: PlayerNames
   m_TagString: Untagged
@@ -2643,6 +2617,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504181048}
   m_CullTransparentMesh: 1
+--- !u!114 &504181053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504181048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6649fca9412834c028f34e12bd2740fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetSelectUI
+  ShowTopMostFoldoutHeaderGroup: 1
+  trans: {fileID: 1207614724}
+  namePrefeb: {fileID: 2968227815195941830, guid: 3c87d6df22c5c4123b5f88ee12c01f95, type: 3}
+  selectedCardId: 0
+--- !u!114 &504181054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504181048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 2670951277
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &511815354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,10 +2741,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 326338074}
-        m_TargetAssemblyTypeName: TargetSelectUI, Assembly-CSharp
-        m_MethodName: Close
-        m_Mode: 1
+      - m_Target: {fileID: 326338070}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: PlayersPanelOpen
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5118,10 +5134,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 440099044}
-  - {fileID: 88429534}
   - {fileID: 1165221161}
   - {fileID: 1372752432}
+  - {fileID: 440099044}
+  - {fileID: 88429534}
   - {fileID: 1932083153}
   - {fileID: 109092942}
   - {fileID: 504181049}
@@ -6952,7 +6968,6 @@ GameObject:
   - component: {fileID: 1372752435}
   - component: {fileID: 1372752434}
   - component: {fileID: 1372752433}
-  - component: {fileID: 1372752436}
   m_Layer: 5
   m_Name: CardInventory
   m_TagString: Untagged
@@ -7023,9 +7038,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1372752436}
-        m_TargetAssemblyTypeName: CardInventoryUI, Assembly-CSharp
-        m_MethodName: OpenInventory
+      - m_Target: {fileID: 326338070}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: CardInventoryToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7073,21 +7088,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372752431}
   m_CullTransparentMesh: 1
---- !u!114 &1372752436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372752431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8067d4412ad4643c387a9836c8ca26bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardInventoryUI
-  cardInventoryPanel: {fileID: 109092941}
-  cardSlotPrefab: {fileID: 1366570415719185492, guid: 19bc33146deca41b19d1a7b00cd54cd6, type: 3}
-  content: {fileID: 1211049951}
 --- !u!1 &1386213180
 GameObject:
   m_ObjectHideFlags: 0
@@ -13624,6 +13624,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1942889974}
+  - {fileID: 326338071}
   - {fileID: 31350782}
   - {fileID: 2090049334}
   - {fileID: 2035044088}
@@ -13632,5 +13633,4 @@ SceneRoots:
   - {fileID: 210573684}
   - {fileID: 711458756}
   - {fileID: 1130497978}
-  - {fileID: 326338071}
   - {fileID: 1409595839}

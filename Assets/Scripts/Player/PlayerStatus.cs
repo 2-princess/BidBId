@@ -17,6 +17,7 @@ public class PlayerStatus : NetworkBehaviour
     {
         if (!IsOwner) return;
         SetNicknameRpc(SessionManager.Instance.MyNickname);
+        Debug.Log("접속한 닉네임 : " + nickname.Value);
     }
 
     [Rpc(SendTo.Server)]

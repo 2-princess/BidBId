@@ -3,8 +3,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameObject inventoryPanel;
+    public CardInventoryUI cardInventoryUI;
     public InventoryUI inventoryUI;
+
+    public TargetSelectUI targetSelectUI;
     public GameObject storePanel;
     public GameObject escPanel;
     public StoreUI storeUI;
@@ -14,10 +16,28 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    public void PlayersPanelOpen(int cardId)
+    {
+        targetSelectUI.gameObject.SetActive(!targetSelectUI.gameObject.activeInHierarchy);
+        if (targetSelectUI.gameObject.activeInHierarchy)
+        {
+            targetSelectUI.Open(cardId);
+        }
+    }
+
+    public void CardInventoryToggle()
+    {
+        cardInventoryUI.gameObject.SetActive(!cardInventoryUI.gameObject.activeInHierarchy);
+        if (cardInventoryUI.gameObject.activeInHierarchy)
+        {
+            cardInventoryUI.OpenInventory();
+        }
+    }
+
     public void InventoryToggle()
     {
-        inventoryPanel.SetActive(!inventoryPanel.activeInHierarchy);
-        if (inventoryPanel.activeInHierarchy)
+        inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeInHierarchy);
+        if (inventoryUI.gameObject.activeInHierarchy)
         {
             inventoryUI.OpenInventory();
         }
