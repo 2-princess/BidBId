@@ -3,15 +3,6 @@ using UnityEngine;
 
 public class PlayerSkillController : NetworkBehaviour
 {
-    private void Update()
-    {
-        if (!IsOwner) return;
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            UseCard(1);
-        }
-    }
 
     public void UseCard(int cardId)
     {

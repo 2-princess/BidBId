@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.AI;
 using static PlayerAnimationController;
 
 public class PlayerMoveController : NetworkBehaviour
@@ -10,8 +11,10 @@ public class PlayerMoveController : NetworkBehaviour
     public Transform skull;
     public bool isGround = false;
     public bool isMove = true;
+    private bool isCallMove = false;
     public PlayerAnimationController aniCon;
     float speed = 3f;
+    [SerializeField] private NavMeshAgent agent;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -25,10 +28,32 @@ public class PlayerMoveController : NetworkBehaviour
             }
         }
     }
-
+    
     void Update()
     {
         if (!IsOwner) return;
+        if (isCallMove)
+        {
+            agent.nextPosition = transform.position;
+
+            Vector3 dir = agent.desiredVelocity;
+
+            playerRigid.linearVelocity = new Vector3(dir.x, playerRigid.linearVelocity.y, dir.z);
+            skull.LookAt(skull.position + dir);
+
+            // 목적지 도착
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.2f)
+            {
+                agent.ResetPath();
+
+                isCallMove = false;
+                isMove = true;
+
+                playerRigid.linearVelocity = new Vector3(0, playerRigid.linearVelocity.y, 0);
+                aniCon.SetAni(PlayerState.Idle);
+            }
+            return;
+        }
         if (!isMove) return;
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -100,12 +125,43 @@ public class PlayerMoveController : NetworkBehaviour
     }
     IEnumerator LandingDelay()
     {
-        isMove = false;
+        SetMove(false);
         // 착지 순간 좌우 이동도 잠깐 멈춤
         playerRigid.linearVelocity = new Vector3(0, playerRigid.linearVelocity.y, 0);
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.3f);
+        SetMove(true);
+    }
 
-        isMove = true;
+    public void StartCallMove(Vector3 destination)
+    {
+        if (!IsServer) return;
+        Debug.Log("Agent : " + agent);
+        Debug.Log("NavMesh 위인가 : " + agent.isOnNavMesh);
+        Debug.Log("목적지 : " + destination);
+        StartCallMoveRpc(destination);
+    }
+
+    [Rpc(SendTo.Owner)]
+    private void StartCallMoveRpc(Vector3 destination)
+    {
+        isMove = false;
+        isCallMove = true;
+
+        agent.nextPosition = transform.position;
+        agent.SetDestination(destination);
+
+        aniCon.SetAni(PlayerState.Run);
+    }
+
+    public void SetMove(bool value)
+    {
+        SetMoveRpc(value);
+    }
+
+    [Rpc(SendTo.Owner)]
+    private void SetMoveRpc(bool value)
+    {
+        isMove = value;
     }
 
     [Rpc(SendTo.Owner)]
@@ -114,7 +170,6 @@ public class PlayerMoveController : NetworkBehaviour
         Debug.Log("RPC 받은 위치 : " + spawnPosition);
 
         playerRigid.linearVelocity = Vector3.zero;
-
         playerRigid.position = spawnPosition;
 
         Debug.Log("이동 직후 위치 : " + transform.position);

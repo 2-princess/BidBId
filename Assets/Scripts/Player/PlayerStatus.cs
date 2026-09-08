@@ -10,7 +10,7 @@ public class PlayerStatus : NetworkBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)) AddCard(1);
+        if (Input.GetKeyDown(KeyCode.C)) AddCard(6);
     }
 
     public override void OnNetworkSpawn()
