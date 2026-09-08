@@ -1,3 +1,4 @@
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -5,10 +6,23 @@ public class PlayerStatus : NetworkBehaviour
 {
     public NetworkVariable<int> gold = new NetworkVariable<int>();
     public NetworkList<int> cards = new NetworkList<int>();
+    public NetworkVariable<FixedString64Bytes> nickname = new NetworkVariable<FixedString64Bytes>();
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C)) AddCard(1);
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) return;
+        SetNicknameRpc(SessionManager.Instance.MyNickname);
+    }
+
+    [Rpc(SendTo.Server)]
+    private void SetNicknameRpc(string newNickname)
+    {
+        nickname.Value = newNickname;
     }
 
     public void AddGold(int amount)

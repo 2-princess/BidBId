@@ -9,7 +9,30 @@ public class PlayerSkillController : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            UseCardRpc(1, 1);
+            UseCard(1);
+        }
+    }
+
+    public void UseCard(int cardId)
+    {
+        if (!IsOwner) return;
+        CardData card = CardDatabase.Instance.GetCard(cardId);
+
+        if (card == null)
+        {
+            Debug.Log("카드 데이터 없음");
+            return;
+        }
+
+        if (card.needTarget)
+        {
+            // 타겟 선택 UI 열기
+            TargetSelectUI.Instance.Open(cardId);
+        }
+        else
+        {
+            // 타겟이 필요 없으므로 바로 사용
+            UseCardRpc(cardId, ulong.MaxValue);
         }
     }
 
@@ -39,7 +62,7 @@ public class PlayerSkillController : NetworkBehaviour
             Debug.Log("카드에 스킬이 연결되어 있지 않음");
             return;
         }
-        
+
         PlayerStatus targetStatus = null;
         if (card.needTarget)
         {

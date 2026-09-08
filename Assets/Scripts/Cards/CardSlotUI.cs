@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,14 +23,8 @@ public class CardSlotUI : MonoBehaviour
 
     public void UseCard()
     {
+        PlayerSkillController skillController = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerSkillController>();
 
-        if (data.needTarget)
-        {
-            Debug.Log("타겟 선택 필요");
-        }
-        else
-        {
-            Debug.Log("바로 사용 : " + data.id);
-        }
+        skillController.UseCard(data.id);
     }
 }

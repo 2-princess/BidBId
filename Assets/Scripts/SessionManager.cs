@@ -44,6 +44,15 @@ public class SessionManager : MonoBehaviour
 
     public async void CreateSession()
     {
+        string nickname = nicknameInput.text.Trim();
+
+        if (nickname == "")
+        {
+            Debug.Log("닉네임을 입력하세요.");
+            return;
+        }
+
+        MyNickname = nickname;
         loadingPanel.SetActive(true);
         try
         {
