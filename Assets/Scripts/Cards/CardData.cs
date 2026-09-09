@@ -6,6 +6,8 @@ public enum CardSkillType
     Slave,
     MinerLuck,
     OverTimeOrder,
+    StealOre,
+    CatGrass,
 }
 public enum CardGrade
 {

@@ -9,7 +9,6 @@ public class PlayerStatusEffectController : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         if (!IsOwner) return;
-
         StartCoroutine(WaitGameStateManager());
     }
     private IEnumerator WaitGameStateManager()
@@ -36,6 +35,20 @@ public class PlayerStatusEffectController : NetworkBehaviour
         StartOvertimeRpc(multiplier);
     }
 
+    // 화면방해
+    public void StartInterference(float duration)
+    {
+        if (!IsServer) return;
+        StartInterferenceRpc(duration);
+    }
+
+    [Rpc(SendTo.Owner)]
+    private void StartInterferenceRpc(float duration)
+    {
+        GameManager.Instance.interferenceUI.ShowInterference(duration);
+    }
+
+    // 이동속도 감소시킬려고
     [Rpc(SendTo.Owner)]
     private void StartOvertimeRpc(float multiplier)
     {

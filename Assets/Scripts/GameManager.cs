@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject storePanel;
     public GameObject escPanel;
     public StoreUI storeUI;
+    public InterferenceUI interferenceUI;
 
     void Awake()
     {

@@ -21,6 +21,33 @@ public class PlayerInventory : NetworkBehaviour
         }
         inventory.Add(new InventorySlot(itemId, amount));
     }
+    public bool RemoveItem(int itemId, int amount)
+    {
+        if (!IsServer) return false;
+        if (amount <= 0) return false;
+
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (inventory[i].itemId != itemId) continue;
+            if (inventory[i].count < amount) return false;
+
+            InventorySlot slot = inventory[i];
+            slot.count -= amount;
+
+            if (slot.count <= 0)
+            {
+                inventory.RemoveAt(i);
+            }
+            else
+            {
+                inventory[i] = slot;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
 
     [Rpc(SendTo.Server)]
     public void SellItemRpc(int id, int amount)
