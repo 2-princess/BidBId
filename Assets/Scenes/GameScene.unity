@@ -1877,6 +1877,8 @@ GameObject:
   - component: {fileID: 326338071}
   - component: {fileID: 326338070}
   - component: {fileID: 326338072}
+  - component: {fileID: 326338073}
+  - component: {fileID: 326338074}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1930,13 +1932,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardDatabase
   cards:
+  - {fileID: 11400000, guid: 52ea107dc9ffe4d3098e0909ada91dbd, type: 2}
+  - {fileID: 11400000, guid: 7131ad60bf97c416b867d827b3e5ec88, type: 2}
+  - {fileID: 11400000, guid: 1fd6ecbecd3a146378ae9db45ce5c20c, type: 2}
+  - {fileID: 11400000, guid: e2cc4afd128954ffa89f7affd6a96f81, type: 2}
   - {fileID: 11400000, guid: ad1d9eb1a97114c88b3b777708b81646, type: 2}
   - {fileID: 11400000, guid: 0c2abe3212bb04b6cbb2d66ce160e3f4, type: 2}
   - {fileID: 11400000, guid: 27ff99b2f570c4e6f9d7ed2cae5becae, type: 2}
-  - {fileID: 11400000, guid: 634d786084a9c4764bc2f97487391ab1, type: 2}
-  - {fileID: 11400000, guid: bb1b393e9e7174cf1858214367c20995, type: 2}
-  - {fileID: 11400000, guid: 242fbf1d24b744e6bb806f352fb744dc, type: 2}
   - {fileID: 11400000, guid: ae9e22c2a75d54765a1739fe51fdf420, type: 2}
+--- !u!114 &326338073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326338069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 647910323
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!114 &326338074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326338069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcaa9231416d4438d8bf75dbb30ef9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
+  ShowTopMostFoldoutHeaderGroup: 1
+  round:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 1
+  gameState:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
 --- !u!1 &326720238
 GameObject:
   m_ObjectHideFlags: 0

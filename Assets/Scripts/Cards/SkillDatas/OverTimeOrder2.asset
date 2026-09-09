@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0b8d565a13d34069a1a5cee884cf81f, type: 3}
-  m_Name: GoldenTime
+  m_Name: OverTimeOrder2
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  id: 5
-  cardName: "\uD669\uAE08\uC2DC\uAC04"
-  skillType: 2
-  grade: 1
-  skillDescription: "\uB2E4\uC74C\uB77C\uC6B4\uB4DC\uD310\uB9E4\uAE08\uC561 +20%"
+  skill: {fileID: 11400000, guid: e0edf6b707da44b2d8ca7285e1f22044, type: 2}
+  id: 13
+  cardName: "\uC774\uC18D\uAC10\uC18C"
+  skillType: 3
+  grade: 0
+  skillDescription: "\uC0C1\uB300\uBC29 \uC774\uB3D9\uC18D\uB3C4\uB97C 30% \uAC10\uC18C\uC2DC\uD0A8\uB2E4"
+  needTarget: 1
   icon: {fileID: 0}

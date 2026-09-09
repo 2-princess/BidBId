@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b8d565a13d34069a1a5cee884cf81f, type: 3}
   m_Name: MinerLuck
   m_EditorClassIdentifier: Assembly-CSharp::CardData
+  skill: {fileID: 11400000, guid: e95e807275ae3411394444f8f8e1c7a8, type: 2}
   id: 8
   cardName: "\uD589\uC6B4\uC758\uAD11\uBD80"
   skillType: 5
   grade: 1
   skillDescription: "10%\uD655\uB960\uB85C \uC774\uBC88\uAC8C\uC784\uB3D9\uC548 \uAD11\uBB3C\uCC44\uCDE8\uC2DC
     +1"
+  needTarget: 0
   icon: {fileID: 0}

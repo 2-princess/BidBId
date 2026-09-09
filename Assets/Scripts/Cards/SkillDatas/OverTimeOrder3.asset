@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0b8d565a13d34069a1a5cee884cf81f, type: 3}
-  m_Name: CardScan
+  m_Name: OverTimeOrder3
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  id: 7
-  cardName: "\uC2A4\uCE94"
-  skillType: 4
-  grade: 1
-  skillDescription: "\uC774\uBC88\uACBD\uB9E4\uC758 \uCE74\uB4DC\uC2A4\uD0AC\uC744
-    \uD655\uC778\uAC00\uB2A5"
+  skill: {fileID: 11400000, guid: 9dc2c31d0a6e34f6fb00ea2127f71faa, type: 2}
+  id: 14
+  cardName: "\uC774\uC18D\uAC10\uC18C"
+  skillType: 3
+  grade: 0
+  skillDescription: "\uC0C1\uB300\uBC29 \uC774\uB3D9\uC18D\uB3C4\uB97C 50% \uAC10\uC18C\uC2DC\uD0A8\uB2E4"
+  needTarget: 1
   icon: {fileID: 0}

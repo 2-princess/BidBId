@@ -3,11 +3,9 @@ using UnityEngine;
 public enum CardSkillType
 {
     PickPocket,
-    FakeInfo,
-    GoldenTime,
     Slave,
-    CardScan,
-    MinerLuck
+    MinerLuck,
+    OverTimeOrder,
 }
 public enum CardGrade
 {

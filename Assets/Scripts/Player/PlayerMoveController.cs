@@ -11,10 +11,12 @@ public class PlayerMoveController : NetworkBehaviour
     public Transform skull;
     public bool isGround = false;
     public bool isMove = true;
-    private bool isCallMove = false;
     public PlayerAnimationController aniCon;
-    float speed = 3f;
+    private bool isCallMove = false;
+    private float speed = 3f;
+    [SerializeField] private PlayerStatusEffectController statusEffect;
     [SerializeField] private NavMeshAgent agent;
+
 
     void OnCollisionEnter(Collision collision)
     {
@@ -28,7 +30,7 @@ public class PlayerMoveController : NetworkBehaviour
             }
         }
     }
-    
+
     void Update()
     {
         if (!IsOwner) return;
@@ -72,7 +74,7 @@ public class PlayerMoveController : NetworkBehaviour
         float y = playerRigid.linearVelocity.y;
 
         if (isGround && y > 0) { y = 0; }
-        Vector3 moving = new Vector3(moveDir.x * speed, y, moveDir.z * speed);
+        Vector3 moving = new Vector3(moveDir.x * speed * statusEffect.MoveSpeedMultiplier, y, moveDir.z * speed * statusEffect.MoveSpeedMultiplier);
         playerRigid.linearVelocity = moving;
 
         if (moveDir != Vector3.zero)
@@ -131,6 +133,7 @@ public class PlayerMoveController : NetworkBehaviour
         yield return new WaitForSeconds(0.3f);
         SetMove(true);
     }
+
 
     public void StartCallMove(Vector3 destination)
     {
