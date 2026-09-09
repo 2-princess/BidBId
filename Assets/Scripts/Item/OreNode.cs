@@ -41,8 +41,22 @@ public class OreNode : NetworkBehaviour
     void Reward(PlayerInventory inventory)
     {
         ItemId rewardItem = GetRandomOre();
-        inventory.AddItem((int)rewardItem, 1);
-        Debug.Log("획득한 아이템 : " + rewardItem);
+        PlayerStatus status = inventory.GetComponent<PlayerStatus>();
+
+        int amount = 1;
+
+        if (status != null)
+        {
+            int random = Random.Range(0, 100);
+
+            if (random < status.minerLuckChance)
+            {
+                amount = 2;
+            }
+        }
+
+        inventory.AddItem((int)rewardItem, amount);
+        Debug.Log("획득한 아이템 : " + rewardItem + " / " + amount + "개");
     }
 
     ItemId GetRandomOre()

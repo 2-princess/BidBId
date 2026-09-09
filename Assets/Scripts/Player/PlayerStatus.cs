@@ -7,6 +7,7 @@ public class PlayerStatus : NetworkBehaviour
     public NetworkVariable<int> gold = new NetworkVariable<int>();
     public NetworkList<int> cards = new NetworkList<int>();
     public NetworkVariable<FixedString64Bytes> nickname = new NetworkVariable<FixedString64Bytes>();
+    public int minerLuckChance = 0;
 
     void Update()
     {
